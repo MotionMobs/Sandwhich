@@ -1,0 +1,41 @@
+PODS:
+  - camera (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - image_picker (0.0.1):
+    - Flutter
+  - TensorFlowLite (1.12.0)
+  - tflite (1.0.1):
+    - Flutter
+    - TensorFlowLite
+
+DEPENDENCIES:
+  - camera (from `.symlinks/plugins/camera/ios`)
+  - Flutter (from `.symlinks/flutter/ios`)
+  - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - tflite (from `.symlinks/plugins/tflite/ios`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - TensorFlowLite
+
+EXTERNAL SOURCES:
+  camera:
+    :path: ".symlinks/plugins/camera/ios"
+  Flutter:
+    :path: ".symlinks/flutter/ios"
+  image_picker:
+    :path: ".symlinks/plugins/image_picker/ios"
+  tflite:
+    :path: ".symlinks/plugins/tflite/ios"
+
+SPEC CHECKSUMS:
+  camera: d56ad165545ae5a0ffb892376033760a969c68c8
+  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+  image_picker: a211f28b95a560433c00f5cd3773f4710a20404d
+  TensorFlowLite: e81aef029750aa46b42ad16553fa4cddd81498cc
+  tflite: 662f66a519252e2d254b7434d7f0da5e7c937f40
+
+PODFILE CHECKSUM: ebd43b443038e611b86ede96e613bd6033c49497
+
+COCOAPODS: 1.6.1
