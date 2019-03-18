@@ -68,6 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final deviceRatio = size.width / size.height;
+
     return Scaffold(
       key: _scaffoldKey,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -75,7 +78,15 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Stack(
         children: <Widget>[
           controller.value.isInitialized
-              ? CameraPreview(controller)
+              ? Transform.scale(
+                  scale: controller.value.aspectRatio / deviceRatio,
+                  child: Center(
+                    child: AspectRatio(
+                      child: CameraPreview(controller),
+                      aspectRatio: controller.value.aspectRatio,
+                    ),
+                  ),
+                )
               : Container(),
           HamburgerBar(_scaffoldKey),
           Align(
