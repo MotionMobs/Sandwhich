@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HamburgerBar extends StatelessWidget {
-  GlobalKey<ScaffoldState> scaffoldKey;
+  final GlobalKey<ScaffoldState> scaffoldKey;
   HamburgerBar(this.scaffoldKey, {Key key}) : super(key: key);
   static String assetName = 'assets/sandwhich.svg';
   final Widget svg = new SvgPicture.asset(

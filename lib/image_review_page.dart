@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:tflite/tflite.dart';
 import 'package:simple_share/simple_share.dart';
+import 'package:sandwhich/utils.dart';
 
 class ImageReviewPage extends StatefulWidget {
   final String imagePath;
@@ -112,7 +113,7 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                   ),
                   Expanded(
                     child: FlatButton(
-                      onPressed: () => {},
+                      onPressed: () async => await launchURL("https://motionmobs.com"),
                       child: Text(
                         "MM",
                         style:

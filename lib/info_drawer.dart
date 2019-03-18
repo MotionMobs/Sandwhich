@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:sandwhich/utils.dart';
 
 class InfoDrawer extends StatefulWidget {
   InfoDrawer({Key key}) : super(key: key);
@@ -8,17 +8,6 @@ class InfoDrawer extends StatefulWidget {
 }
 
 class _InfoDrawerState extends State<InfoDrawer> {
-  _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      try{
-      await launch(url);
-      }catch(e){
-        print("exception back from launching $url: $e");
-      }
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +55,7 @@ class _InfoDrawerState extends State<InfoDrawer> {
             ),
             SizedBox(height: 40),
             GestureDetector(
-              onTap: () async => await _launchURL("https://sandwhich.mm.dev"),
+              onTap: () async => await launchURL("https://sandwhich.mm.dev"),
               child: Text(
                 "*Brochure Site",
                 style: subHeadTheme,
@@ -74,7 +63,7 @@ class _InfoDrawerState extends State<InfoDrawer> {
             ),
             SizedBox(height: 40),
             GestureDetector(
-              onTap: () async => await _launchURL("https://motionmobs.com"),
+              onTap: () async => await launchURL("https://motionmobs.com"),
               child: Text(
                 "*MotionMobs",
                 style: subHeadTheme,
