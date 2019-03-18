@@ -17,9 +17,15 @@ class HamburgerBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomLeft,
-      child: FlatButton(
-        child: svg,
-        onPressed: () => Scaffold.of(context).openDrawer(),
+      child: Padding(
+        padding: const EdgeInsets.only(
+          bottom: 24,
+          left: 8,
+        ),
+        child: FlatButton(
+          child: svg,
+          onPressed: () => Scaffold.of(context).openDrawer(),
+        ),
       ),
     );
   }
