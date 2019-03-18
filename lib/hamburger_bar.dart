@@ -16,7 +16,7 @@ class HamburgerBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.topLeft,
+      alignment: Alignment.bottomLeft,
       child: FlatButton(
         child: svg,
         onPressed: () => Scaffold.of(context).openDrawer(),
