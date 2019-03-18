@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sandwhich/hamburger_bar.dart';
 import 'package:sandwhich/image_review_page.dart';
 import 'package:sandwhich/info_drawer.dart';
 import 'package:tflite/tflite.dart';
@@ -38,6 +39,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _res = "";
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   CameraController controller;
 
@@ -76,18 +78,21 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       drawer: InfoDrawer(),
       body: SafeArea(
-        child: controller.value.isInitialized
-            ? AspectRatio(
-                aspectRatio: controller.value.aspectRatio,
-                child: CameraPreview(controller),
-              )
-            : Container(),
+        child: Stack(
+          children: <Widget>[
+            controller.value.isInitialized
+                  ? AspectRatio(
+                      aspectRatio: controller.value.aspectRatio,
+                      child: CameraPreview(controller),
+                    )
+                  : Container(),
+            HamburgerBar(_scaffoldKey),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
