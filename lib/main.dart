@@ -24,14 +24,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'SandWhich?'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+  MyHomePage({Key key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -71,18 +70,13 @@ class _MyHomePageState extends State<MyHomePage> {
       key: _scaffoldKey,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       drawer: InfoDrawer(),
-      body: SafeArea(
-        child: Stack(
-          children: <Widget>[
-            controller.value.isInitialized
-                  ? AspectRatio(
-                      aspectRatio: controller.value.aspectRatio,
-                      child: CameraPreview(controller),
-                    )
-                  : Container(),
-            HamburgerBar(_scaffoldKey),
-          ],
-        ),
+      body: Stack(
+        children: <Widget>[
+          controller.value.isInitialized
+                ? CameraPreview(controller)
+                : Container(),
+          HamburgerBar(_scaffoldKey),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
