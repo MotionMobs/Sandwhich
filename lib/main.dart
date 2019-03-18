@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sandwhich/image_review_page.dart';
+import 'package:sandwhich/info_drawer.dart';
 import 'package:tflite/tflite.dart';
 import 'package:camera/camera.dart';
 
@@ -79,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      drawer: InfoDrawer(),
       body: SafeArea(
         child: controller.value.isInitialized
             ? AspectRatio(
