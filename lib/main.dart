@@ -42,17 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void initState() {
     super.initState();
-    initModel();
     loadCamera();
-  }
-
-  initModel() async {
-    _res = await Tflite.loadModel(
-        model: "assets/ssd_mobilenet.tflite",
-        labels: "assets/ssd_mobilenet.txt",
-        numThreads: 1 // defaults to 1
-        );
-    print("res:$_res");
   }
 
   loadCamera() async {
