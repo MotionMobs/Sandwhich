@@ -247,6 +247,7 @@
 				"${BUILT_PRODUCTS_DIR}/camera/camera.framework",
 				"${BUILT_PRODUCTS_DIR}/image_picker/image_picker.framework",
 				"${BUILT_PRODUCTS_DIR}/path_provider/path_provider.framework",
+				"${BUILT_PRODUCTS_DIR}/simple_share/simple_share.framework",
 				"${BUILT_PRODUCTS_DIR}/url_launcher/url_launcher.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -257,6 +258,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/camera.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/image_picker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/path_provider.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/simple_share.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/url_launcher.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
