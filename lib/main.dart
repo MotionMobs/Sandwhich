@@ -41,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   CameraController controller;
+  int currentCamera = 0;
 
   void initState() {
     super.initState();
@@ -48,7 +49,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   loadCamera() async {
-    controller = CameraController(cameras[0], ResolutionPreset.medium);
+    controller =
+        CameraController(cameras[currentCamera], ResolutionPreset.medium);
     controller.initialize().then((_) {
       if (!mounted) {
         return;
@@ -73,9 +75,28 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Stack(
         children: <Widget>[
           controller.value.isInitialized
-                ? CameraPreview(controller)
-                : Container(),
+              ? CameraPreview(controller)
+              : Container(),
           HamburgerBar(_scaffoldKey),
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 44.0, right: 24),
+              child: IconButton(
+                icon: Icon(
+                  Icons.switch_camera,
+                  size: 40,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  if (cameras.length > 1) {
+                    currentCamera = (currentCamera + 1) % cameras.length;
+                    loadCamera();
+                  }
+                },
+              ),
+            ),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(
