@@ -23,14 +23,31 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
   List classes;
   bool sandwich;
 
+  Image image;
+
   GlobalKey _renderKey = new GlobalKey();
+
+  final style = TextStyle(
+    color: Colors.purpleAccent,
+    fontSize: 36,
+    fontWeight: FontWeight.w800,
+  );
 
   void initState() {
     super.initState();
     initModel();
   }
 
+  @override
+  void reassemble(){
+    super.reassemble();
+    initModel();
+  }
+
   initModel() async {
+    image = Image.file(
+      File(widget.imagePath),
+    );
     _res = await Tflite.loadModel(
       model: "assets/ssd_mobilenet.tflite",
       labels: "assets/ssd_mobilenet.txt",
@@ -72,25 +89,28 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
 
   @override
   Widget build(BuildContext context) {
-    final image = File(widget.imagePath);
+    final size = MediaQuery.of(context).size;
+    final deviceRatio = size.width / size.height;
+    final imageRatio = (image?.width ?? 1) / (image?.height ?? 1);
 
-    final style = TextStyle(
-      color: Colors.purpleAccent,
-      fontSize: 36,
-      fontWeight: FontWeight.w800,
-    );
-
-    return RepaintBoundary(
-      key: _renderKey,
-      child: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(image: FileImage(image), fit: BoxFit.cover),
-          ),
-          child: SafeArea(
-            child: Column(
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          RepaintBoundary(
+            key: _renderKey,
+            child: Stack(
               children: <Widget>[
-                Expanded(
+                Transform.scale(
+                  scale: imageRatio / deviceRatio,
+                  child: Center(
+                    child: AspectRatio(
+                      child: image,
+                      aspectRatio: imageRatio,
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topCenter,
                   child: FutureBuilder(
                     future: Tflite.detectObjectOnImage(
                       path: widget.imagePath,
@@ -111,37 +131,48 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                           recs.map((rec) => rec["detectedClass"]).toList();
                       print(classes);
 
-                      return Column(
-                        children: <Widget>[
-                          classes.contains("sandwich")
-                              ? Text(
-                                  "SANDWICH!",
-                                  style: style,
-                                )
-                              : Text(
-                                  "not sandwich",
+                      return SafeArea(
+                        child: Stack(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: classes.contains("sandwich")
+                                  ? Text(
+                                      "SANDWICH!",
+                                      style: style,
+                                    )
+                                  : Text(
+                                      "not sandwich",
+                                      style: style,
+                                    ),
+                            ),
+                            Positioned(
+                              top: 100,
+                              child: Container(
+                                width: size.width,
+                                child: Text(
+                                  classes.join(", "),
                                   style: style,
                                 ),
-                          Text(
-                            classes.join(", "),
-                            style: style,
-                          )
-                        ],
+                              ),
+                            )
+                          ],
+                        ),
                       );
                     },
                   ),
                 ),
-                AroundShareMenu()
               ],
             ),
           ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingActionButton(
-          onPressed: _shareImage,
-          tooltip: 'Return to Camera',
-          child: Icon(Icons.file_upload),
-        ),
+          AroundShareMenu(),
+        ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        onPressed: _shareImage,
+        tooltip: 'Return to Camera',
+        child: Icon(Icons.file_upload),
       ),
     );
   }
@@ -154,31 +185,32 @@ class AroundShareMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Expanded(
-          child: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.purpleAccent,
-              size: 48,
-            ),
-            onPressed: () => Navigator.pop(context),
-          ),
-        ),
-        Expanded(
-          child: Container(),
-        ),
-        Expanded(
-          child: FlatButton(
-            onPressed: () async => await launchURL("https://motionmobs.com"),
-            child: Text(
-              "MM",
-              style: TextStyle(color: Colors.blueAccent, fontSize: 36),
+    return SafeArea(
+      child: Stack(
+        children: <Widget>[
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.purpleAccent,
+                size: 48,
+              ),
+              onPressed: () => Navigator.pop(context),
             ),
           ),
-        ),
-      ],
+          Align(
+            alignment: Alignment.bottomRight,
+            child: FlatButton(
+              onPressed: () async => await launchURL("https://motionmobs.com"),
+              child: Text(
+                "MM",
+                style: TextStyle(color: Colors.blueAccent, fontSize: 36),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
