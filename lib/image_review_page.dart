@@ -70,13 +70,13 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
           .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
 
       Uri currentUri = Uri.parse(widget.imagePath);
-      print(currentUri);
+      // print(currentUri);
       var parts = widget.imagePath.split(".");
       if (parts.length >= 2) {
         parts[parts.length - 2] = parts[parts.length - 2] + "-p";
       }
       var processedPath = parts.join(".");
-      print(processedPath);
+      // print(processedPath);
 
       await File(processedPath).writeAsBytes(pngBytes);
 
