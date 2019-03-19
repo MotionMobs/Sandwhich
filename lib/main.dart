@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:sandwhich/hamburger_bar.dart';
 import 'package:sandwhich/image_review_page.dart';
 import 'package:sandwhich/info_drawer.dart';
+import 'package:sandwhich/mm_button.dart';
 import 'package:tflite/tflite.dart';
 import 'package:camera/camera.dart';
 
@@ -88,7 +88,19 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 )
               : Container(),
-          HamburgerBar(_scaffoldKey),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: size.width/4,
+                child: FlatButton(
+                  child: Image.asset("assets/sandwhich.png"),
+                  onPressed: () => _scaffoldKey.currentState.openDrawer(),
+                ),
+              ),
+            ),
+          ),
           Align(
             alignment: Alignment.topRight,
             child: Padding(
@@ -107,7 +119,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
               ),
             ),
-          )
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MMButton(),
+            ),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(

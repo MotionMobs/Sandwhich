@@ -1,13 +1,12 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:sandwhich/mm_button.dart';
 import 'package:tflite/tflite.dart';
 import 'package:simple_share/simple_share.dart';
-import 'package:sandwhich/utils.dart';
 
 class ImageReviewPage extends StatefulWidget {
   final String imagePath;
@@ -201,13 +200,7 @@ class AroundShareMenu extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: FlatButton(
-              onPressed: () async => await launchURL("https://motionmobs.com"),
-              child: Text(
-                "MM",
-                style: TextStyle(color: Colors.blueAccent, fontSize: 36),
-              ),
-            ),
+            child: MMButton(),
           ),
         ],
       ),

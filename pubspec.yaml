@@ -53,6 +53,7 @@ flutter:
     - assets/ssd_mobilenet.tflite
     - assets/ssd_mobilenet.txt
     - assets/sandwhich.svg
+    - assets/sandwhich.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
