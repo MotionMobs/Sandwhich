@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sandwhich/utils.dart';
+import 'package:sandwhich/styles.dart';
+import 'package:sandwhich/utils/assets_utils.dart';
+import 'package:sandwhich/utils/utils.dart';
 
 class InfoDrawer extends StatefulWidget {
   InfoDrawer({Key key}) : super(key: key);

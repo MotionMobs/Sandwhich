@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sandwhich/utils.dart';
+import 'package:sandwhich/utils/utils.dart';
 
 class MMButton extends StatelessWidget {
   const MMButton({
