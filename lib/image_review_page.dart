@@ -7,6 +7,8 @@ import 'package:flutter/rendering.dart';
 import 'package:sandwhich/mm_button.dart';
 import 'package:tflite/tflite.dart';
 import 'package:simple_share/simple_share.dart';
+import 'package:sandwhich/utils/assets_utils.dart';
+import 'package:flare_flutter/flare_actor.dart';
 
 class ImageReviewPage extends StatefulWidget {
   final String imagePath;
@@ -131,16 +133,16 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                         child: Stack(
                           children: <Widget>[
                             Align(
-                              alignment: Alignment.topCenter,
+                              alignment: Alignment.bottomCenter,
                               child: classes.contains("sandwich")
-                                  ? Text(
-                                      "SANDWICH!",
-                                      style: style,
+                                ? FlareActor(
+                                    AssetStrings.sandwichFlare,
+                                      animation: "sandwich",
                                     )
-                                  : Text(
-                                      "not sandwich",
-                                      style: style,
-                                    ),
+                                  : FlareActor(
+                                      AssetStrings.notSandwichFlare,
+                                      animation: "not_sandwich",
+                                    )
                             ),
                             Positioned(
                               top: 100,
