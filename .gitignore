@@ -72,3 +72,8 @@
 /training_images/**/*.jpg
 /training_images/**/*.jpeg
 !/training_images/**/example.jpeg
+
+/tf_files/**/bottlenecks
+/tf_files/**/training_summaries
+/tf_files/retrained_*
+/tf_files/**/*.tflite
