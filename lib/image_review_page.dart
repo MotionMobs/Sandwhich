@@ -166,9 +166,11 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         onPressed: _shareImage,
         tooltip: 'Return to Camera',
-        child: Icon(Icons.file_upload),
+        child: Icon(Icons.share, size: 32.0),
       ),
     );
   }
@@ -186,18 +188,24 @@ class AroundShareMenu extends StatelessWidget {
         children: <Widget>[
           Align(
             alignment: Alignment.bottomLeft,
-            child: IconButton(
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.purpleAccent,
-                size: 48,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+              child: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                  size: 32,
+                ),
+                onPressed: () => Navigator.pop(context),
               ),
-              onPressed: () => Navigator.pop(context),
             ),
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: MMButton(),
+            child: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: MMButton(),
+          ),
           ),
         ],
       ),

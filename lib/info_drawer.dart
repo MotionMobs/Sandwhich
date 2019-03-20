@@ -32,8 +32,8 @@ class _InfoDrawerState extends State<InfoDrawer> {
                 children: <Widget>[
                   Image.asset(
                     AssetStrings.logo,
-                    width: 100.0,
-                    height: 100.0,
+                    width: 75.0,
+                    height: 75.0,
                   ),
                   Text(
                     "Sandwhich",
@@ -62,7 +62,7 @@ class _InfoDrawerState extends State<InfoDrawer> {
                     "For more information about the app, why it was built, or to get in touch with us please visit the app's website:",
                     style: infoTextStyle,
                   ),
-                  SizedBox(height: 6),
+                  SizedBox(height: 12),
                   GestureDetector(
                     onTap: () async =>
                         await launchURL("https://sandwhich.mm.dev"),
@@ -81,13 +81,8 @@ class _InfoDrawerState extends State<InfoDrawer> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "Follow Us",
+                    "Follow Us On Twitter",
                     style: infoTitleStyle,
-                  ),
-                  SizedBox(height: 12),
-                  Text(
-                    "@sandwhich_app",
-                    style: infoLinkStyle,
                   ),
                   SizedBox(height: 12),
                   Text(
@@ -100,8 +95,10 @@ class _InfoDrawerState extends State<InfoDrawer> {
             SizedBox(height: 40),
             Container(
               width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+              child: Padding(
+                padding:EdgeInsets.only(left: 16.0),
+                child: Column (
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
                   Text(
@@ -114,12 +111,13 @@ class _InfoDrawerState extends State<InfoDrawer> {
                         await launchURL("https://motionmobs.com"),
                     child: Image.asset(
                       AssetStrings.mmLogo,
-                      width: 100.0,
-                      height: 100.0,
+                      width: 75.0,
+                      height: 75.0,
                     ),
                   ),
                 ],
               ),
+            ),
             ),
           ],
         ),
