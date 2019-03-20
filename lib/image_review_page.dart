@@ -7,6 +7,8 @@ import 'package:flutter/rendering.dart';
 import 'package:sandwhich/mm_button.dart';
 import 'package:tflite/tflite.dart';
 import 'package:simple_share/simple_share.dart';
+import 'package:sandwhich/utils/assets_utils.dart';
+import 'package:flare_flutter/flare_actor.dart';
 
 class ImageReviewPage extends StatefulWidget {
   final String imagePath;
@@ -131,16 +133,16 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                         child: Stack(
                           children: <Widget>[
                             Align(
-                              alignment: Alignment.topCenter,
+                              alignment: Alignment.bottomCenter,
                               child: classes.contains("sandwich")
-                                  ? Text(
-                                      "SANDWICH!",
-                                      style: style,
+                                ? FlareActor(
+                                    AssetStrings.sandwichFlare,
+                                      animation: "sandwich",
                                     )
-                                  : Text(
-                                      "not sandwich",
-                                      style: style,
-                                    ),
+                                  : FlareActor(
+                                      AssetStrings.notSandwichFlare,
+                                      animation: "not_sandwich",
+                                    )
                             ),
                             Positioned(
                               top: 100,
@@ -166,9 +168,11 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         onPressed: _shareImage,
         tooltip: 'Return to Camera',
-        child: Icon(Icons.file_upload),
+        child: Icon(Icons.share, size: 32.0),
       ),
     );
   }
@@ -186,18 +190,24 @@ class AroundShareMenu extends StatelessWidget {
         children: <Widget>[
           Align(
             alignment: Alignment.bottomLeft,
-            child: IconButton(
-              icon: Icon(
-                Icons.arrow_back,
-                color: Colors.purpleAccent,
-                size: 48,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+              child: IconButton(
+                icon: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                  size: 32,
+                ),
+                onPressed: () => Navigator.pop(context),
               ),
-              onPressed: () => Navigator.pop(context),
             ),
           ),
           Align(
             alignment: Alignment.bottomRight,
-            child: MMButton(),
+            child: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: MMButton(),
+          ),
           ),
         ],
       ),

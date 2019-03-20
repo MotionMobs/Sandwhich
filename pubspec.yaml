@@ -26,6 +26,7 @@ dependencies:
   url_launcher: ^5.0.2
   flutter_svg: ^0.12.0
   simple_share: ^0.0.1+3
+  flare_flutter: ^1.3.3
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -52,11 +53,13 @@ flutter:
     - assets/mobilenet_v2_1.0_224_quant.tflite
     - assets/ssd_mobilenet.tflite
     - assets/ssd_mobilenet.txt
-    - assets/sandwhich.svg
-    - assets/sandwhich.png
-    - assets/mm-logo.png
+    - assets/images/sandwhich.svg
+    - assets/images/sandwhich.png
+    - assets/images/mm-logo.png
     - assets/sandwich.tflite
     - assets/sandwich.txt
+    - assets/flare/sandwich.flr
+    - assets/flare/not-sandwich.flr
 
   # To add assets to your application, add an assets section, like this:
   # assets:

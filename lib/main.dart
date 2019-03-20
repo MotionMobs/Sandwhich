@@ -93,9 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                width: size.width/4,
+                width: size.width / 10,
                 child: FlatButton(
-                  child: Image.asset("assets/sandwhich.png"),
+                  child: Icon(Icons.info_outline, color: Colors.white),
                   onPressed: () => _scaffoldKey.currentState.openDrawer(),
                 ),
               ),
@@ -129,21 +129,29 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _takePicture().then((path) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ImageReviewPage(
-                      imagePath: path,
-                    ),
-              ),
-            );
-          });
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.camera_alt),
+      floatingActionButton: Container(
+        width: 72.0,
+        height: 72.0,
+        child: FloatingActionButton(
+          backgroundColor: Colors.white30,
+          shape:
+              CircleBorder(side: BorderSide(color: Colors.white, width: 2.5)),
+          elevation: 2.0,
+          onPressed: () {
+            _takePicture().then((path) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ImageReviewPage(
+                        imagePath: path,
+                      ),
+                ),
+              );
+            });
+          },
+          tooltip: 'Increment',
+          child: Icon(Icons.camera_alt, color: Colors.white, size: 28),
+        ),
       ),
     );
   }
