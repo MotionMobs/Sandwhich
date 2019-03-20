@@ -38,7 +38,7 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
   }
 
   @override
-  void reassemble(){
+  void reassemble() {
     super.reassemble();
     initModel();
   }
@@ -48,8 +48,8 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
       File(widget.imagePath),
     );
     _res = await Tflite.loadModel(
-      model: "assets/ssd_mobilenet.tflite",
-      labels: "assets/ssd_mobilenet.txt",
+      model: "assets/sandwich.tflite",
+      labels: "assets/sandwich.txt",
     );
   }
 
@@ -111,13 +111,10 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                 Align(
                   alignment: Alignment.topCenter,
                   child: FutureBuilder(
-                    future: Tflite.detectObjectOnImage(
+                    future: Tflite.runModelOnImage(
                       path: widget.imagePath,
-                      model: "SSDMobileNet",
-                      numResultsPerClass: 1,
-                      threshold: 0.3,
                       imageStd: 255.0,
-                      blockSize: 16,
+                      imageMean: 0.0,
                     ),
                     initialData: [],
                     builder: (context, snapshot) {
@@ -126,8 +123,8 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                           snapshot.connectionState == ConnectionState.waiting) {
                         return Container();
                       }
-                      final classes =
-                          recs.map((rec) => rec["detectedClass"]).toList();
+                      print(recs);
+                      final classes = recs.map((rec) => rec["label"]).toList();
                       print(classes);
 
                       return SafeArea(
