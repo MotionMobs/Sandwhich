@@ -55,6 +55,8 @@ flutter:
     - assets/sandwhich.svg
     - assets/sandwhich.png
     - assets/mm-logo.png
+    - assets/sandwich.tflite
+    - assets/sandwich.txt
 
   # To add assets to your application, add an assets section, like this:
   # assets:
