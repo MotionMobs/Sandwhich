@@ -71,6 +71,8 @@
 
 /training_images/**/*.jpg
 /training_images/**/*.jpeg
+/training_images/**/*.png
+/training_images/**/*.PNG
 !/training_images/**/example.jpeg
 
 /tf_files/**/bottlenecks
