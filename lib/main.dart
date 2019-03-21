@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       title: 'SandWhich',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'RobotoMono',
       ),
       home: MyHomePage(),
     );
