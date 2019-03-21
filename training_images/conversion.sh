@@ -15,12 +15,12 @@ for l in "${labels[@]}"; do
 
     tmp='tmp.jpg'
     # resize and strip metadata out
-    magick $i -strip -resize '224x224' $tmp
+    magick "$i" -strip -resize '224x224' $tmp
     # use md5 to protect minimally against duplicates
     name=$(md5 -q $tmp)
     # echo $name
     mv -f $tmp "$name.jpg"
-    mv -f $i ./input/$l/processed/
+    mv -f "$i" ./input/$l/processed/
   done
 
   # move all files to processed
