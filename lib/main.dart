@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       title: 'SandWhich',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'RobotoMono',
       ),
       home: MyHomePage(),
     );
@@ -74,7 +75,16 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       key: _scaffoldKey,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      drawer: InfoDrawer(),
+      drawer: Theme(
+        data: Theme.of(context).copyWith(
+          canvasColor: Colors.transparent,
+          primaryColor: Colors.transparent, //***PRIMARY COLOR overide works */
+
+          //** */DOES NOT OVERRIDE THEMEDATA IN MATERIALAPP***
+          primaryColorBrightness: Brightness.light,
+        ),
+      child: InfoDrawer(),
+      ),
       body: Stack(
         children: <Widget>[
           controller.value.isInitialized
