@@ -49,7 +49,7 @@ SPEC CHECKSUMS:
   Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
   image_picker: a211f28b95a560433c00f5cd3773f4710a20404d
   path_provider: f96fff6166a8867510d2c25fdcc346327cc4b259
-  simple_share: e710c3f840929f103e8ac24e44315ed7acc31512
+  simple_share: fe56a715d8a25920961f1cf509d4bd5b2a2c26dc
   TensorFlowLite: e81aef029750aa46b42ad16553fa4cddd81498cc
   tflite: 662f66a519252e2d254b7434d7f0da5e7c937f40
   url_launcher: 0067ddb8f10d36786672aa0722a21717dba3a298

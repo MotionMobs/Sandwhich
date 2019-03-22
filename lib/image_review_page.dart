@@ -37,18 +37,21 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
   void initState() {
     super.initState();
     initModel();
+      image = Image.file(
+        File(widget.imagePath),
+      );
   }
 
   @override
   void reassemble() {
     super.reassemble();
     initModel();
+      image = Image.file(
+        File(widget.imagePath),
+      );
   }
 
   initModel() async {
-    image = Image.file(
-      File(widget.imagePath),
-    );
     _res = await Tflite.loadModel(
       // model: "assets/ssd_mobilenet.tflite",
       // labels: "assets/ssd_mobilenet.txt",
@@ -79,12 +82,12 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
       if (parts.length >= 2) {
         parts[parts.length - 2] = parts[parts.length - 2] + "-p";
       }
-      var processedPath = parts.join(".");
+      String processedPath = parts.join(".");
       // print(processedPath);
 
       await File(processedPath).writeAsBytes(pngBytes);
 
-      SimpleShare.share(uri: processedPath);
+      SimpleShare.share(uri: "$processedPath", type: "image/png");
     } catch (e) {
       print("exception trying to render/share image: $e");
     }
@@ -107,7 +110,7 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                   scale: imageRatio / deviceRatio,
                   child: Center(
                     child: AspectRatio(
-                      child: image,
+                      child: image ?? SizedBox(),
                       aspectRatio: imageRatio,
                     ),
                   ),
