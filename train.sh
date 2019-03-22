@@ -6,6 +6,9 @@ OUTPUT_LABELS=/tf_files/retrained_labels.txt
 ARCHITECTURE=mobilenet_0.50_${IMAGE_SIZE}
 # TF_HUB_MODEL=https://tfhub.dev/google/imagenet/mobilenet_v1_050_224/classification/1
 TF_HUB_MODEL=https://tfhub.dev/google/imagenet/mobilenet_v1_050_224/feature_vector/1
+# TF_HUB_MODEL=https://tfhub.dev/google/imagenet/mobilenet_v1_100_224/feature_vector/1
+# TF_HUB_MODEL=https://tfhub.dev/google/imagenet/mobilenet_v2_050_224/feature_vector/2
+# TF_HUB_MODEL=https://tfhub.dev/google/openimages_v4/ssd/mobilenet_v2/1
 TRAINING_STEPS=500
 
 echo "Building docker image..."
@@ -47,7 +50,9 @@ docker run -it \
   --output_labels="${OUTPUT_LABELS}" \
   --image_dir=/input \
   --tfhub_module="${TF_HUB_MODEL}" \
-  --saved_model_dir=/tf_files/models
+  --saved_model_dir=/tf_files/models \
+  --random_scale=20 \
+  --flip_left_right
 
 docker run -it \
   -v $(pwd)/tf_files:/tf_files \
