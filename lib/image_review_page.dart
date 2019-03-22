@@ -50,6 +50,8 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
       File(widget.imagePath),
     );
     _res = await Tflite.loadModel(
+      // model: "assets/ssd_mobilenet.tflite",
+      // labels: "assets/ssd_mobilenet.txt",
       model: "assets/sandwich.tflite",
       labels: "assets/sandwich.txt",
     );
@@ -115,10 +117,10 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                   child: FutureBuilder(
                     future: Tflite.runModelOnImage(
                       path: widget.imagePath,
-                      imageStd: 1,
-                      imageMean: 1,
-                      threshold: 0.3,
-                      numResults: 10,
+                      // imageStd: 1,
+                      // imageMean: 1,
+                      // threshold: 0.3,
+                      // numResults: 10,
                     ),
                     initialData: [],
                     builder: (context, snapshot) {
@@ -128,6 +130,7 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                         return Container();
                       }
                       print(recs);
+                      // recs = recs.where((rec) => rec["index"] <= 1).toList();
                       final classes = recs.map((rec) => rec["label"]).toList();
                       print(classes);
 
@@ -135,24 +138,23 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                         child: Stack(
                           children: <Widget>[
                             Align(
-                              alignment: Alignment.bottomCenter,
-                              child: classes.contains("sandwich")
-                                ? FlareActor(
-                                    AssetStrings.sandwichFlare,
-                                      animation: "sandwich",
-                                    )
-                                  : FlareActor(
-                                      AssetStrings.notSandwichFlare,
-                                      animation: "not_sandwich",
-                                    )
-                            ),
+                                alignment: Alignment.bottomCenter,
+                                child: classes.contains("sandwich")
+                                    ? FlareActor(
+                                        AssetStrings.sandwichFlare,
+                                        animation: "sandwich",
+                                      )
+                                    : FlareActor(
+                                        AssetStrings.notSandwichFlare,
+                                        animation: "not_sandwich",
+                                      )),
                             Positioned(
                               top: 100,
                               child: Container(
                                 width: size.width,
                                 child: Text(
-                                  classes.join(", "),
-                                  style: style,
+                                  recs.join(", "),
+                                  style: style.copyWith(fontSize: 18.0),
                                 ),
                               ),
                             )
@@ -209,7 +211,7 @@ class AroundShareMenu extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(16.0),
               child: MMButton(),
-          ),
+            ),
           ),
         ],
       ),
