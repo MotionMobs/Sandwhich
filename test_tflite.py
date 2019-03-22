@@ -25,7 +25,7 @@ def read_tensor_from_image_file(file_name,
   output_details = interpreter.get_output_details()
 
   img = Image.open(file_name)
-  img = img.resize((224, 224))
+  img = img.resize((input_details[0]['shape'][1], input_details[0]['shape'][2]))
 
   input_data = np.expand_dims(img, axis=0)
 
