@@ -115,8 +115,10 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                   child: FutureBuilder(
                     future: Tflite.runModelOnImage(
                       path: widget.imagePath,
-                      imageStd: 255.0,
-                      imageMean: 0.0,
+                      imageStd: 1,
+                      imageMean: 1,
+                      threshold: 0.3,
+                      numResults: 10,
                     ),
                     initialData: [],
                     builder: (context, snapshot) {
