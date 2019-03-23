@@ -20,31 +20,26 @@ class _InfoDrawerState extends State<InfoDrawer> {
           color: bgColor,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(8, 64, 8, 8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset(
-                          AssetStrings.logo,
-                          width: screenSize.width / 1,
-                          height: screenSize.height / 8,
-                        ),
-                        Text(
-                          "Sandwhich",
-                          style: headerText,
-                        ),
-                      ],
-                    ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset(
+                        AssetStrings.logo,
+                        width: screenSize.width / 1,
+                        height: screenSize.height / 8,
+                      ),
+                      Text(
+                        "Sandwhich",
+                        style: headerText,
+                      ),
+                    ],
                   ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Container(
+                  Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,8 +60,8 @@ class _InfoDrawerState extends State<InfoDrawer> {
                         ),
                         SizedBox(height: 12),
                         GestureDetector(
-                          onTap: () async =>
-                              await launchURL("https://twitter.com/SandwhichApp"),
+                          onTap: () async => await launchURL(
+                              "https://twitter.com/SandwhichApp"),
                           child: Text(
                             "@SandwhichApp",
                             style: infoLinkStyle,
@@ -98,8 +93,8 @@ class _InfoDrawerState extends State<InfoDrawer> {
                       ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
