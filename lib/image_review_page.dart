@@ -9,6 +9,7 @@ import 'package:tflite/tflite.dart';
 import 'package:simple_share/simple_share.dart';
 import 'package:sandwhich/utils/assets_utils.dart';
 import 'package:flare_flutter/flare_actor.dart';
+import 'package:sandwhich/styles.dart';
 
 class ImageReviewPage extends StatefulWidget {
   final String imagePath;
@@ -140,9 +141,22 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                       return SafeArea(
                         child: Stack(
                           children: <Widget>[
-                            Align(
-                                alignment: Alignment.bottomCenter,
-                                child: classes.contains("sandwich")
+                            Positioned(
+                              bottom: 0,
+                                child: Container(
+                                height: size.height / 2.5,
+                                width: size.width,
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    begin: FractionalOffset.topCenter,
+                                    end: FractionalOffset.bottomCenter,
+                                    colors: [
+                                      gradientStart,
+                                      gradientStop
+                                    ],
+                                  ),
+                                ),
+                                  child: classes.contains("sandwich")
                                     ? FlareActor(
                                         AssetStrings.sandwichFlare,
                                         animation: "sandwich",
@@ -150,7 +164,7 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                                     : FlareActor(
                                         AssetStrings.notSandwichFlare,
                                         animation: "not_sandwich",
-                                      )),
+                                      ))),
                             Positioned(
                               top: 100,
                               child: Container(
@@ -212,7 +226,7 @@ class AroundShareMenu extends StatelessWidget {
           Align(
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: MMButton(),
             ),
           ),
