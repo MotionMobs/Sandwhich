@@ -25,5 +25,6 @@ for l in `find ./input/ -maxdepth 1 -mindepth 1 -type d | sed 's/.\/input\///g'`
   done
 
   # move all files to processed
+  mkdir -p "./output/$l"
   mv -f *.jpg "./output/$l/"
 done
