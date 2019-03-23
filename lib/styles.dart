@@ -5,6 +5,9 @@ Color primaryColor = const Color(0xFFF7D838); // yellow
 Color secondaryColor = const Color(0xFFF68282); // redish
 Color tertiaryColor = const Color(0xFF8ADB68); // greenish
 
+Color gradientStart = Color(0xff000000).withOpacity(0.0); // light blue
+Color gradientStop = Color(0xff000000).withOpacity(0.8);
+
 TextStyle buttonTextStyle = const TextStyle(
   color: const Color.fromRGBO(255, 255, 255, 0.8),
   fontSize: 16.0,

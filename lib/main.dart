@@ -7,6 +7,7 @@ import 'package:sandwhich/info_drawer.dart';
 import 'package:sandwhich/mm_button.dart';
 import 'package:tflite/tflite.dart';
 import 'package:camera/camera.dart';
+import 'package:sandwhich/styles.dart';
 
 List<CameraDescription> cameras;
 
@@ -83,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
           //** */DOES NOT OVERRIDE THEMEDATA IN MATERIALAPP***
           primaryColorBrightness: Brightness.light,
         ),
-      child: InfoDrawer(),
+        child: InfoDrawer(),
       ),
       body: Stack(
         children: <Widget>[
@@ -98,26 +99,40 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 )
               : Container(),
-          Align(
+          Positioned(
+            bottom: 0,
+            child: Container(
+              height: size.height / 2.5,
+              width: size.width,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: FractionalOffset.topCenter,
+                  end: FractionalOffset.bottomCenter,
+                  colors: [
+                    gradientStart,
+                    gradientStop
+                  ],
+                ),
+              ),
+              child: Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: size.width / 10,
-                child: FlatButton(
-                  child: Icon(Icons.info_outline, color: Colors.white),
-                  onPressed: () => _scaffoldKey.currentState.openDrawer(),
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+              child: FlatButton(
+                      child: Icon(Icons.info_outline, size: 32, color: Colors.white),
+                      onPressed: () => _scaffoldKey.currentState.openDrawer(),
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
           Align(
             alignment: Alignment.topRight,
             child: Padding(
               padding: const EdgeInsets.only(top: 44.0, right: 24),
               child: IconButton(
                 icon: Icon(
-                  Icons.switch_camera,
+                  Icons.loop,
                   size: 40,
                   color: Colors.white,
                 ),
@@ -133,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Align(
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(16.0),
               child: MMButton(),
             ),
           ),
@@ -160,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
             });
           },
           tooltip: 'Increment',
-          child: Icon(Icons.camera_alt, color: Colors.white, size: 28),
+          child: Icon(Icons.lens, color: Colors.white, size: 72),
         ),
       ),
     );
