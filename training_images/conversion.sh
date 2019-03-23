@@ -5,8 +5,9 @@ if [[ -z $(which magick) ]]; then
   exit
 fi
 
-labels=('sandwich' 'not-sandwich')
-for l in "${labels[@]}"; do
+
+for l in `find ./input/ -maxdepth 1 -mindepth 1 -type d | sed 's/.\/input\///g'`; do
+  echo $l
   for i in ./input/$l/unprocessed/*; do
     if [[ ! -e $i ]]; then
       echo 'file does not exist'
