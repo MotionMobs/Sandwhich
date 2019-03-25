@@ -1,7 +1,6 @@
 beer
 components
 cookies
-french fries
 pasta
 picnic table
 random food
