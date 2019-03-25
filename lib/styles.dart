@@ -9,7 +9,7 @@ Color gradientStart = Color(0xff000000).withOpacity(0.0); // light blue
 Color gradientStop = Color(0xff000000).withOpacity(0.8);
 
 TextStyle buttonTextStyle = const TextStyle(
-  color: const Color.fromRGBO(255, 255, 255, 0.8),
+  color: const Color.fromRGBO(255, 255, 255, 0.5),
   fontSize: 16.0,
   fontWeight: FontWeight.bold,
 );

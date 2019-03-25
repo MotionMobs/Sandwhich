@@ -38,18 +38,18 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
   void initState() {
     super.initState();
     initModel();
-      image = Image.file(
-        File(widget.imagePath),
-      );
+    image = Image.file(
+      File(widget.imagePath),
+    );
   }
 
   @override
   void reassemble() {
     super.reassemble();
     initModel();
-      image = Image.file(
-        File(widget.imagePath),
-      );
+    image = Image.file(
+      File(widget.imagePath),
+    );
   }
 
   initModel() async {
@@ -135,49 +135,43 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                       }
                       print(recs);
                       // recs = recs.where((rec) => rec["index"] <= 1).toList();
-                      final List<String> classes = List.from(recs.map((rec) => rec["label"]).toList());
+                      final List<String> classes =
+                          List.from(recs.map((rec) => rec["label"]).toList());
                       print(classes);
 
                       return Container(
-                                height: size.height / 2.5,
-                                width: size.width,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    begin: FractionalOffset.topCenter,
-                                    end: FractionalOffset.bottomCenter,
-                                    colors: [
-                                      gradientStart,
-                                      gradientStop
-                                    ],
-                                  ),
-                                ),
-                                  child: SafeArea(
-                        child: Stack(
-                          children: <Widget>[
-                            Positioned(
-                              bottom: 0,
- child: classes.any((l)=>l.contains("sandwich"))
-                                    ? FlareActor(
-                                        AssetStrings.sandwichFlare,
-                                        animation: "sandwich",
-                                      )
-                                    : FlareActor(
-                                        AssetStrings.notSandwichFlare,
-                                        animation: "not_sandwich",
-                                      )),
-                            Positioned(
-                              top: 100,
-                              child: Container(
-                                width: size.width,
-                                child: Text(
-                                  recs.join(", "),
-                                  style: style.copyWith(fontSize: 18.0),
+                        height: size.height,
+                        width: size.width,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: FractionalOffset.center,
+                            end: FractionalOffset.bottomCenter,
+                            colors: [gradientStart, gradientStop],
+                          ),
+                        ),
+                        child: SafeArea(
+                          child: Stack(
+                            children: <Widget>[
+                              Positioned(
+                                bottom: 0,
+                                child: Container(
+                                  height: size.height / 2.5,
+                                  width: size.width,
+                                  child:
+                                      classes.any((l) => l.contains("sandwich"))
+                                          ? FlareActor(
+                                              AssetStrings.sandwichFlare,
+                                              animation: "sandwich",
+                                            )
+                                          : FlareActor(
+                                              AssetStrings.notSandwichFlare,
+                                              animation: "not_sandwich",
+                                            ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                                  ),
                       );
                     },
                   ),
