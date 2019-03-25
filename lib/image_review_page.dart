@@ -138,12 +138,7 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                       final List<String> classes = List.from(recs.map((rec) => rec["label"]).toList());
                       print(classes);
 
-                      return SafeArea(
-                        child: Stack(
-                          children: <Widget>[
-                            Positioned(
-                              bottom: 0,
-                                child: Container(
+                      return Container(
                                 height: size.height / 2.5,
                                 width: size.width,
                                 decoration: BoxDecoration(
@@ -156,7 +151,12 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                                     ],
                                   ),
                                 ),
-                                  child: classes.any((l)=>l.contains("sandwich"))
+                                  child: SafeArea(
+                        child: Stack(
+                          children: <Widget>[
+                            Positioned(
+                              bottom: 0,
+ child: classes.any((l)=>l.contains("sandwich"))
                                     ? FlareActor(
                                         AssetStrings.sandwichFlare,
                                         animation: "sandwich",
@@ -164,7 +164,7 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                                     : FlareActor(
                                         AssetStrings.notSandwichFlare,
                                         animation: "not_sandwich",
-                                      ))),
+                                      )),
                             Positioned(
                               top: 100,
                               child: Container(
@@ -174,9 +174,10 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                                   style: style.copyWith(fontSize: 18.0),
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
+                                  ),
                       );
                     },
                   ),
