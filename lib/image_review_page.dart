@@ -135,7 +135,7 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                       }
                       print(recs);
                       // recs = recs.where((rec) => rec["index"] <= 1).toList();
-                      final classes = recs.map((rec) => rec["label"]).toList();
+                      final List<String> classes = List.from(recs.map((rec) => rec["label"]).toList());
                       print(classes);
 
                       return SafeArea(
@@ -156,7 +156,7 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                                     ],
                                   ),
                                 ),
-                                  child: classes.contains("sandwich")
+                                  child: classes.any((l)=>l.contains("sandwich"))
                                     ? FlareActor(
                                         AssetStrings.sandwichFlare,
                                         animation: "sandwich",
