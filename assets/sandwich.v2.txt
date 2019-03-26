@@ -1,19 +1,13 @@
 beer
 components
 cookies
-cups
-faces
-milkshake
-mugs
 pasta
 picnic table
-plants
 random food
 sandwich blt
 sandwich wholewheat
 sandwich bbq
 sandwich breakfast
-sandwich classic
 sandwich cracker
 sandwich croissant
 sandwich fish
@@ -26,9 +20,7 @@ sandwich pimento cheese
 sandwich pulled pork
 sandwich sloppyjoes
 sandwich smores
-sandwich sub
 sandwich turkey
-shapes
 soda
 water bottle
 wraps
