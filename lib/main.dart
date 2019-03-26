@@ -8,6 +8,7 @@ import 'package:sandwhich/mm_button.dart';
 import 'package:tflite/tflite.dart';
 import 'package:camera/camera.dart';
 import 'package:sandwhich/styles.dart';
+import 'package:sandwhich/splash_screen_page.dart';
 
 List<CameraDescription> cameras;
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'RobotoMono',
       ),
-      home: MyHomePage(),
+      home: SplashScreen(),
     );
   }
 }
