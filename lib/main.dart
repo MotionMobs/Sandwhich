@@ -189,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     );
                     print(recs);
                     final List<String> classes =
-                        List.from(recs.map((rec) => rec["label"]).toList());
+                        List.from(recs.map((rec) => "${rec["label"]}_${rec["confidence"]}").toList());
                     print(classes);
                     isProcessing = false;
                     Navigator.push(
