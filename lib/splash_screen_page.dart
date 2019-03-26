@@ -62,6 +62,11 @@ class _SplashScreenState extends State<SplashScreen> {
                 style: headerText,
               ),
               SizedBox(height: 40.0),
+                            Text(
+                "Coming April 1, 2019",
+                style: infoTitleStyle,
+              ),
+              SizedBox(height: 16.0),
               Text(
                 "All identified sandwiches may not be edible.",
                 style: TextStyle(
@@ -70,7 +75,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
               SizedBox(height: 8.0),
-              _cautionHighlighted(context)
+              _cautionHighlighted(context),
             ],
           ),
         ],
