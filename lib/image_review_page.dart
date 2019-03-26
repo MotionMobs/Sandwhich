@@ -5,67 +5,24 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:sandwhich/mm_button.dart';
-import 'package:tflite/tflite.dart';
 import 'package:simple_share/simple_share.dart';
 import 'package:sandwhich/utils/assets_utils.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:sandwhich/styles.dart';
 
-class ImageReviewPage extends StatefulWidget {
+class ImageReviewPage extends StatelessWidget {
   final String imagePath;
+  final List<String> classes;
 
-  const ImageReviewPage({Key key, @required this.imagePath}) : super(key: key);
+  ImageReviewPage({Key key, @required this.imagePath, @required this.classes})
+      : super(key: key);
 
-  @override
-  _ImageReviewPageState createState() => _ImageReviewPageState();
-}
-
-class _ImageReviewPageState extends State<ImageReviewPage> {
-  String _res = "";
-  List classes;
-  bool sandwich;
-
-  Image image;
-
-  GlobalKey _renderKey = new GlobalKey();
-
-  final style = TextStyle(
+  final GlobalKey _renderKey = new GlobalKey();
+  final style = const TextStyle(
     color: Colors.purpleAccent,
     fontSize: 36,
     fontWeight: FontWeight.w800,
   );
-
-  void initState() {
-    super.initState();
-    initModel();
-    image = Image.file(
-      File(widget.imagePath),
-    );
-  }
-
-  @override
-  void reassemble() {
-    super.reassemble();
-    initModel();
-    image = Image.file(
-      File(widget.imagePath),
-    );
-  }
-
-  initModel() async {
-    _res = await Tflite.loadModel(
-      // model: "assets/ssd_mobilenet.tflite",
-      // labels: "assets/ssd_mobilenet.txt",
-      model: "assets/sandwich.tflite",
-      labels: "assets/sandwich.txt",
-    );
-  }
-
-  @override
-  void dispose() {
-    Tflite.close();
-    super.dispose();
-  }
 
   _shareImage() async {
     try {
@@ -77,9 +34,7 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
       Uint8List pngBytes = byteData.buffer
           .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
 
-      Uri currentUri = Uri.parse(widget.imagePath);
-      // print(currentUri);
-      var parts = widget.imagePath.split(".");
+      var parts = imagePath.split(".");
       if (parts.length >= 2) {
         parts[parts.length - 2] = parts[parts.length - 2] + "-p";
       }
@@ -98,7 +53,9 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final deviceRatio = size.width / size.height;
+    final image = Image.file(File(imagePath));
     final imageRatio = (image?.width ?? 1) / (image?.height ?? 1);
+    print(image);
 
     return Scaffold(
       body: Stack(
@@ -118,62 +75,38 @@ class _ImageReviewPageState extends State<ImageReviewPage> {
                 ),
                 Align(
                   alignment: Alignment.topCenter,
-                  child: FutureBuilder(
-                    future: Tflite.runModelOnImage(
-                      path: widget.imagePath,
-                      // imageStd: 1,
-                      // imageMean: 1,
-                      // threshold: 0.3,
-                      // numResults: 10,
+                  child: Container(
+                    height: size.height,
+                    width: size.width,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: FractionalOffset.center,
+                        end: FractionalOffset.bottomCenter,
+                        colors: [gradientStart, gradientStop],
+                      ),
                     ),
-                    initialData: [],
-                    builder: (context, snapshot) {
-                      List recs = snapshot.data;
-                      if (recs == null ||
-                          snapshot.connectionState == ConnectionState.waiting) {
-                        return Container();
-                      }
-                      print(recs);
-                      // recs = recs.where((rec) => rec["index"] <= 1).toList();
-                      final List<String> classes =
-                          List.from(recs.map((rec) => rec["label"]).toList());
-                      print(classes);
-
-                      return Container(
-                        height: size.height,
-                        width: size.width,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: FractionalOffset.center,
-                            end: FractionalOffset.bottomCenter,
-                            colors: [gradientStart, gradientStop],
+                    child: SafeArea(
+                      child: Stack(
+                        children: <Widget>[
+                          Positioned(
+                            bottom: 0,
+                            child: Container(
+                              height: size.height / 2.5,
+                              width: size.width,
+                              child: classes.any((l) => l.contains("sandwich"))
+                                  ? FlareActor(
+                                      AssetStrings.sandwichFlare,
+                                      animation: "sandwich",
+                                    )
+                                  : FlareActor(
+                                      AssetStrings.notSandwichFlare,
+                                      animation: "not_sandwich",
+                                    ),
+                            ),
                           ),
-                        ),
-                        child: SafeArea(
-                          child: Stack(
-                            children: <Widget>[
-                              Positioned(
-                                bottom: 0,
-                                child: Container(
-                                  height: size.height / 2.5,
-                                  width: size.width,
-                                  child:
-                                      classes.any((l) => l.contains("sandwich"))
-                                          ? FlareActor(
-                                              AssetStrings.sandwichFlare,
-                                              animation: "sandwich",
-                                            )
-                                          : FlareActor(
-                                              AssetStrings.notSandwichFlare,
-                                              animation: "not_sandwich",
-                                            ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -207,9 +140,10 @@ class AroundShareMenu extends StatelessWidget {
           Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
               child: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back,
                   color: Colors.white,
                   size: 32,

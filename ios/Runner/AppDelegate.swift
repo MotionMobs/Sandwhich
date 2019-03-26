@@ -8,7 +8,7 @@ import Flutter
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
   ) -> Bool {
     GeneratedPluginRegistrant.register(with: self)
-    application.isIdleTimerDisabled = true;
+    // application.isIdleTimerDisabled = true;
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }

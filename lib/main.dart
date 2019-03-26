@@ -45,10 +45,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   CameraController controller;
   int currentCamera = 0;
+  bool isProcessing = false;
 
   void initState() {
     super.initState();
     loadCamera();
+    initModel();
+  }
+
+  initModel() async {
+    _res = await Tflite.loadModel(
+      // model: "assets/ssd_mobilenet.tflite",
+      // labels: "assets/ssd_mobilenet.txt",
+      model: "assets/sandwich.tflite",
+      labels: "assets/sandwich.txt",
+    );
   }
 
   loadCamera() async {
@@ -65,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void dispose() async {
     await Tflite.close();
-    controller?.dispose();
+    await controller?.dispose();
     super.dispose();
   }
 
@@ -109,24 +120,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 gradient: LinearGradient(
                   begin: FractionalOffset.topCenter,
                   end: FractionalOffset.bottomCenter,
-                  colors: [
-                    gradientStart,
-                    gradientStop
-                  ],
+                  colors: [gradientStart, gradientStop],
                 ),
               ),
               child: Align(
-            alignment: Alignment.bottomLeft,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
-              child: FlatButton(
-                      child: Icon(Icons.info_outline, size: 32, color: Colors.white),
-                      onPressed: () => _scaffoldKey.currentState.openDrawer(),
-                    ),
+                alignment: Alignment.bottomLeft,
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+                  child: FlatButton(
+                    child:
+                        Icon(Icons.info_outline, size: 32, color: Colors.white),
+                    onPressed: () => _scaffoldKey.currentState.openDrawer(),
                   ),
                 ),
               ),
             ),
+          ),
           Align(
             alignment: Alignment.topRight,
             child: Padding(
@@ -163,18 +173,36 @@ class _MyHomePageState extends State<MyHomePage> {
           shape:
               CircleBorder(side: BorderSide(color: Colors.white, width: 2.5)),
           elevation: 2.0,
-          onPressed: () {
-            _takePicture().then((path) {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ImageReviewPage(
-                        imagePath: path,
+          onPressed: isProcessing
+              ? null
+              : () {
+                  setState(() {
+                    isProcessing = true;
+                  });
+                  _takePicture().then((path) async {
+                    List recs = await Tflite.runModelOnImage(
+                      path: path,
+                      // imageStd: 1,
+                      // imageMean: 1,
+                      // threshold: 0.3,
+                      // numResults: 10,
+                    );
+                    print(recs);
+                    final List<String> classes =
+                        List.from(recs.map((rec) => rec["label"]).toList());
+                    print(classes);
+                    isProcessing = false;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ImageReviewPage(
+                              imagePath: path,
+                              classes: classes,
+                            ),
                       ),
-                ),
-              );
-            });
-          },
+                    );
+                  });
+                },
           tooltip: 'Increment',
           child: Icon(Icons.lens, color: Colors.white, size: 72),
         ),
