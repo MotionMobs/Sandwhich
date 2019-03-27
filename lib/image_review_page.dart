@@ -104,7 +104,8 @@ class ImageReviewPage extends StatelessWidget {
                                     ),
                             ),
                           ),
-                          Align(alignment: Alignment.center,child: Text(classes.join(",")),)
+                          //For debugging:
+                          // Align(alignment: Alignment.center,child: Text(classes.join(","), style: infoTextStyle),)
                         ],
                       ),
                     ),
