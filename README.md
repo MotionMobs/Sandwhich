@@ -50,7 +50,11 @@ flutter run
 
 ### Train Your Model/ How To 🚋 Your 🥪
 
-To train your 🥪, you need to install [Docker](https://www.docker.com/).
+To train your 🥪, you need to install [Docker](https://www.docker.com/) and [ImageMagick](https://www.imagemagick.org/).
+
+```bash
+brew update && brew install imagemagick
+```
 
 Set up file structure for your images
 
