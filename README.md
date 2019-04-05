@@ -58,11 +58,11 @@ Set up file structure for your images
 training_images
 │   ├── input
 │   │   ├── not-sandwich
-│   │   │   ├── processed  # processed *not-sandwich* images
-│   │   │   └── unprocessed  # _original_, not yet processed *not-sandwich* images
+│   │   │   ├── processed  # processed not-sandwich images
+│   │   │   └── unprocessed  # original, not yet processed not-sandwich images
 │   │   ├── sandwich
-│   │   │   ├── processed  # processed *sandwich* imagess
-│   │   │   └── unprocessed  # _original_, not yet processed *sandwich* images
+│   │   │   ├── processed  # processed sandwich imagess
+│   │   │   └── unprocessed  # original, not yet processed sandwich images
 │   ├── output  # ready for model
 │   │   ├── not-sandwich  # minimum 20 images to train
 │   │   └── sandwich  # minimum 20 images to train
