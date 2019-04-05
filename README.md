@@ -1,28 +1,19 @@
-<img src="./media/icon.png" width="200"> 
+# Sandwhich 
 
-# Sandwhich
-
+![sandwhich-icon](./media/icon.png "Sandwhich Icon")
 [Website](https://sandwhich.mm.dev) | [Twitter](https://twitter.com/SandwhichApp)
 
 Sandwhich is a mobile app built to solve the sandwich debate by determining if the picture you've taken is a sandwich using machine learning, [Flutter](https://flutter.dev), and [TensorFlow Lite](https://www.tensorflow.org/lite).
-
-<div>
-<a href='https://play.google.com/store/apps/details?id=dev.mm.sandwhich'><img alt='Get it on Google Play' src='./media/google-play.svg' height='48px'/></a>
-<a href='https://itunes.apple.com/us/app/apple-store/id1457568395'><img alt='Get it on the App Store' src='./media/app-store.svg' height='48px'/></a>
-</div>
 
 Available on [Google Play](https://play.google.com/store/apps/details?id=dev.mm.sandwhich) and the [App Store](https://itunes.apple.com/us/app/apple-store/id1457568395)
 
 ## Screenshots
 
-<img src="./media/animated.gif" width="200" />
-<img src="./media/ss.png" width="200" />
-<img src="./media/ss2.png" width="200" />
-<img src="./media/ss3.png" width="200" />
+<img src="./media/animated.gif" width="200" /><img src="./media/ss.png" width="200" /><img src="./media/ss2.png" width="200" /><img src="./media/ss3.png" width="200" />
 
 ## Built With
 
-- [x] Flutter Packages
+- **Flutter Packages**
   - [tflite](https://pub.dartlang.org/packages/tflite)
   - [image_picker](https://pub.dartlang.org/packages/image_picker)
   - [camera](https://pub.dartlang.org/packages/camera)
@@ -33,9 +24,9 @@ Available on [Google Play](https://play.google.com/store/apps/details?id=dev.mm.
   - [flare_flutter](https://pub.dartlang.org/packages/flare_flutter)
   - [flutter_launcher_icons](https://pub.dartlang.org/packages/flutter_launcher_icons)
   - [splashscreen](https://pub.dartlang.org/packages/splashscreen)
-- [x] [Flare](https://www.2dimensions.com/about-flare) by 2Dimensions
+- **Flare by 2Dimensions**
   - Link to our [flare file](https://www.2dimensions.com/a/wade/files/flare/sandwich) 🤷‍♂️
-- [x] Google Fonts
+- **Google Fonts**
   - [Roboto Mono](https://fonts.google.com/specimen/Roboto+Mono)
   - [Rubik](https://fonts.google.com/specimen/Rubik)
 
@@ -107,7 +98,7 @@ To test the new model, run `./test_model.sh $IMAGE_PATH` where `$IMAGE_PATH` is 
 
 ## Team
 
-<a href='https://motionmobs.com'><img alt='MotionMobs Website' src='./media/mm.png' height='125'/></a>
+<a href='https://motionmobs.com'><img alt='MotionMobs Website' src='./media/mm.png' height='50'/></a>
 
 ## Credits
 
