@@ -1,6 +1,7 @@
 # Sandwhich 
 
 ![sandwhich-icon](./media/icon.png "Sandwhich Icon")
+<br />
 [Website](https://sandwhich.mm.dev) | [Twitter](https://twitter.com/SandwhichApp)
 
 Sandwhich is a mobile app built to solve the sandwich debate by determining if the picture you've taken is a sandwich using machine learning, [Flutter](https://flutter.dev), and [TensorFlow Lite](https://www.tensorflow.org/lite).
